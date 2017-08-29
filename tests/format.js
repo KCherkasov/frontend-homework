@@ -51,4 +51,30 @@ QUnit.module('Тестируем функцию format', function () {
 		assert.strictEqual(format(input, 2), expected2);
 		assert.strictEqual(format(input, 3), expected3);
 	});
+
+  QUnit.test('дополнительный тест для format (вывод в 6 и 9 колонок)', function(assert) {
+    const input = [-1, 0, 23, 12, 997, 2367, 432350, -22550, 1244, 0, 1, 2];
+
+    const expected6 = '    -1      0   23 12 997 2367\n' +
+                      '432350 -22550 1244  0   1    2';
+
+    const expected9 = '-1 0 23 12 997 2367 432350 -22550 1244\n' +
+                      ' 0 1  2';
+
+    assert.strictEqual(format(input, 6), expected6);
+    assert.strictEqual(format(input, 9), expected9);
+  });
+
+  QUnit.test('еще один дополнительный тест для format (8 чисел в 4, 8 и 10 колонок)', function(assert) {
+    const input = [0, -123, 87659, 100000, 99999, 100500, 2305, 438];
+
+    const expected4 = '    0   -123 87659 100000\n' +
+                      '99999 100500  2305    438';
+
+    const expected8and10 = '0 -123 87659 100000 99999 100500 2305 438';
+
+    assert.strictEqual(format(input, 4), expected4);
+    assert.strictEqual(format(input, 8), expected8and10);
+    assert.strictEqual(format(input, 10), expected8and10);
+  });
 });

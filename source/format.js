@@ -14,13 +14,13 @@ const format = (input, cols) => {
   let colsCharWidth = [].fill.call({length : cols}, 0);
 
   // ищем максимально длинную строку в каждом столбце
-  for (let i = 0; i < input.length; ++i) {
-    let itemLength = String(input[i]).length;
-    let colIndex = i % cols;
+  input.forEach((element, index, array) => {
+    let itemLength = String(element).length;
+    let colIndex = index % cols;
     if (colsCharWidth[colIndex] < itemLength) {
       colsCharWidth[colIndex] = itemLength;
     }
-  }
+  });
 
   // формируем выводимую строку
   return input.reduce((previousValue, currentValue, index, array) => {
